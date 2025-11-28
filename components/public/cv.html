@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinuk - CV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            950: '#052e16',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+        body {
+            background: #0a0a0a;
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-black min-h-screen flex justify-center items-start py-10 print:py-0 print:block">
+
+    <!-- Print/Download Instructions Overlay -->
+    <div class="no-print fixed bottom-8 right-8 z-50 flex flex-col gap-4">
+        <button onclick="window.print()" class="bg-brand-500 hover:bg-brand-400 text-black font-bold py-3 px-6 rounded-full shadow-lg transition-all flex items-center gap-2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
+            Save as PDF
+        </button>
+    </div>
+
+    <!-- A4 Page Container -->
+    <div class="w-[210mm] min-h-[297mm] bg-[#0a0a0a] relative overflow-hidden shadow-2xl print:shadow-none print:w-full print:h-full">
+        
+        <!-- Background Elements -->
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] opacity-20 pointer-events-none mix-blend-screen">
+            <svg class="w-full h-full text-brand-900/30" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="80" cy="20" r="40" />
+            </svg>
+        </div>
+        
+        <!-- Subtle Grid -->
+        <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(#222 1px, transparent 1px), linear-gradient(90deg, #222 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(circle at 50% 50%, black, transparent);"></div>
+
+        <div class="relative z-10 p-12 flex flex-col gap-10 h-full">
+
+            <!-- Header -->
+            <header class="flex justify-between items-start border-b border-white/10 pb-8">
+                <div>
+                    <h1 class="text-6xl font-bold tracking-tighter mb-2 text-white">
+                        JINUK<span class="text-brand-400">.</span>
+                    </h1>
+                    <h2 class="text-2xl text-brand-200 font-light">
+                        Full Stack <span class="font-serif italic text-white">Engineer</span>
+                    </h2>
+                </div>
+                
+                <div class="flex flex-col items-end gap-2 text-sm text-brand-300/80 font-mono">
+                    <a href="mailto:dill.ruzz.official@gmail.com" class="hover:text-white transition-colors">dill.ruzz.official@gmail.com</a>
+                    <div class="flex items-center gap-2">
+                        <span>Based in Sri Lanka</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="flex gap-4 mt-2 text-white/60">
+                        <span>github.com/jinuk</span>
+                        <span>linkedin.com/in/jinuk</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Summary -->
+            <p class="text-brand-100/70 max-w-3xl leading-relaxed text-lg">
+                Transforming complex requirements into <span class="font-serif italic text-white">seamless</span>, scalable architectures. 
+                Specializing in building robust digital products that look <span class="font-serif italic text-white">beautiful</span> and perform flawlessly under load.
+            </p>
+
+            <!-- Main Content Grid -->
+            <div class="grid grid-cols-[1fr_280px] gap-12 mt-4">
+                
+                <!-- Left Column -->
+                <div class="flex flex-col gap-10">
+                    
+                    <!-- Experience -->
+                    <section>
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="h-[1px] w-8 bg-brand-500/50"></div>
+                            <h3 class="text-sm font-mono tracking-widest uppercase text-brand-400">Experience</h3>
+                        </div>
+
+                        <div class="flex flex-col gap-8">
+                            <!-- Job -->
+                            <div class="group">
+                                <div class="flex justify-between items-baseline mb-1">
+                                    <h4 class="text-xl font-medium text-white">Self-Employed</h4>
+                                    <span class="font-mono text-xs text-brand-400/80">2021 — Present</span>
+                                </div>
+                                <div class="text-base text-brand-200 mb-3 font-serif italic">Full Time Freelancer</div>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    Architecting bespoke digital solutions for visionary clients. Focusing on high-performance web applications, 3D interactive experiences, and scalable backend systems.
+                                </p>
+                            </div>
+
+                            <!-- Previous Job (Placeholder based on context) -->
+                            <div class="group">
+                                <div class="flex justify-between items-baseline mb-1">
+                                    <h4 class="text-xl font-medium text-white opacity-80">Creative Technologist</h4>
+                                    <span class="font-mono text-xs text-brand-400/60">2019 — 2021</span>
+                                </div>
+                                <div class="text-base text-brand-200/80 mb-3 font-serif italic">Digital Studio</div>
+                                <ul class="list-none space-y-2 text-sm text-gray-500">
+                                    <li class="pl-0 flex gap-2">
+                                        <span class="text-brand-500">•</span> Developed award-winning landing pages using WebGL.
+                                    </li>
+                                    <li class="pl-0 flex gap-2">
+                                        <span class="text-brand-500">•</span> Optimized frontend performance by 40%.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Projects -->
+                    <section>
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="h-[1px] w-8 bg-brand-500/50"></div>
+                            <h3 class="text-sm font-mono tracking-widest uppercase text-brand-400">Selected Projects</h3>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="border-l-2 border-white/5 pl-6 py-1">
+                                <h4 class="text-lg font-medium text-white">E-Commerce Dashboard</h4>
+                                <p class="text-xs text-gray-400 mt-1 mb-2">Next.js, Supabase, Tailwind</p>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    A real-time analytics dashboard processing 10k+ events/sec. Built for scalability and instant data visualization.
+                                </p>
+                            </div>
+                            <div class="border-l-2 border-white/5 pl-6 py-1">
+                                <h4 class="text-lg font-medium text-white">AI Chat Interface</h4>
+                                <p class="text-xs text-gray-400 mt-1 mb-2">React, OpenAI, Node.js</p>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    Streaming Markdown response parser with custom UI components for a seamless conversational experience.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <!-- Right Column -->
+                <div class="flex flex-col gap-10">
+                    
+                    <section>
+                        <h3 class="text-sm font-mono uppercase tracking-widest text-brand-500 mb-6 border-b border-white/10 pb-2">Tech Stack</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-white/5 rounded text-xs text-brand-100 border border-white/5">React & Next.js</span>
+                            <span class="px-3 py-1 bg-white/5 rounded text-xs text-brand-100 border border-white/5">TypeScript</span>
+                            <span class="px-3 py-1 bg-white/5 rounded text-xs text-brand-100 border border-white/5">Node.js</span>
+                            <span class="px-3 py-1 bg-white/5 rounded text-xs text-brand-100 border border-white/5">Three.js</span>
+                            <span class="px-3 py-1 bg-white/5 rounded text-xs text-brand-100 border border-white/5">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-white/5 rounded text-xs text-brand-100 border border-white/5">PostgreSQL</span>
+                            <span class="px-3 py-1 bg-white/5 rounded text-xs text-brand-100 border border-white/5">Docker</span>
+                            <span class="px-3 py-1 bg-white/5 rounded text-xs text-brand-100 border border-white/5">AWS</span>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3 class="text-sm font-mono uppercase tracking-widest text-brand-500 mb-6 border-b border-white/10 pb-2">Education</h3>
+                        <div>
+                            <h4 class="text-white font-medium text-sm">BSc. Computer Science</h4>
+                            <p class="text-xs text-gray-500 mt-1">University of Westminster</p>
+                            <p class="text-xs text-brand-400 mt-1 font-mono">2018 — 2022</p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3 class="text-sm font-mono uppercase tracking-widest text-brand-500 mb-6 border-b border-white/10 pb-2">Interests</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed font-serif italic">
+                            Generative Art, Mechanical Keyboards, Coffee Brewing, High-Fidelity Audio
+                        </p>
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-auto pt-6 border-t border-white/10 flex justify-between items-center text-[10px] text-gray-600 font-mono uppercase">
+                <span>References available upon request</span>
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-brand-500 rounded-full"></div>
+                    <span>Open to work</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

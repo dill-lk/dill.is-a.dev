@@ -1,0 +1,13 @@
+This is a database file for Nexus AI.
+You can add data here that you want Nexus to be able to access and process.
+
+For example:
+- User preferences
+- Custom instructions
+- Data for specific tasks
+
+User Information:
+- Location: Sri Lanka
+- WhatsApp Number: 94771396311
+- GitHub Profile: https://github.com/dill-lk
+- Email: dill.ruzz.official@gmail.com
