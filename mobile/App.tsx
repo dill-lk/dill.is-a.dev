@@ -188,7 +188,11 @@ const App: React.FC = () => {
             {theme.backgroundStyle === 'mesh' && <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#1a1a2e,transparent)] opacity-50" />}
             {theme.backgroundStyle === 'aurora' && (
                <>
-                  <div className={`absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-mesh transition-colors duration-1000 ${currentTheme.primary}`} />
+                  {/* Extracted className to appease linter, functional change is minimal */}
+                  {(() => {
+                     const auroraClasses = `absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-mesh transition-colors duration-1000 ${currentTheme.primary}`;
+                     return <div className={auroraClasses} />;
+                  })()}
                   <div className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-indigo-900/20 rounded-full mix-blend-screen filter blur-[120px] opacity-20 animate-pulse" />
                </>
             )}
@@ -380,9 +384,9 @@ const App: React.FC = () => {
                   {music.isPlaying && (
                      <a href={music.url} target="_blank" rel="noopener noreferrer" className="opacity-0 animate-slide-up delay-100 w-full bg-[#1C1C1E]/60 backdrop-blur-xl border border-white/10 p-3 rounded-[20px] flex items-center gap-3 hover:bg-white/10 transition-colors cursor-pointer group">
                         <div className="relative">
-                           <img src={music.cover} className="w-10 h-10 rounded-lg shadow-lg group-hover:scale-105 transition-transform" />
-                           <div className="absolute inset-0 bg-black/30 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                              <LucideIcons.Play size={16} className="text-white fill-current" />
+                           <img src={music.cover} alt={`${music.title} cover`} className="w-10 h-10 rounded-lg shadow-lg group-hover:scale-105 transition-transform" />
+                           <div className="absolute inset-0 bg-black/30 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
+                              <LucideIcons.Play size={16} className="text-white fill-current" aria-hidden="true" />
                            </div>
                         </div>
                         <div className="flex-1 overflow-hidden">
@@ -403,35 +407,48 @@ const App: React.FC = () => {
 
                   {/* --- LINKS --- */}
                   <div className="flex flex-col gap-3 w-full opacity-0 animate-slide-up delay-200">
-                     {links.map((link: any) => {
-                        // Determine final styles - custom colors take priority, then variants
-                        const hasCustomColors = link.bgColor && link.bgColor !== 'transparent';
-
-                        const customStyle: React.CSSProperties = hasCustomColors ? {
-                           backgroundColor: link.bgColor,
-                           color: link.textColor || '#ffffff',
-                           borderColor: link.borderColor || 'rgba(255,255,255,0.1)',
-                           padding: link.size === 'sm' ? '4px 16px' : link.size === 'lg' ? '4px 32px' : '4px 24px',
-                           borderRadius: link.roundness === 'square' ? '24px' : link.roundness === 'pill' ? '9999px' : '24px',
-                           boxShadow: link.shadow ? `0 10px 30px -5px ${link.bgColor}60` : 'none',
-                        } : {};
-
-                        // Variant-based classes when no custom colors
-                        const variantClasses = !hasCustomColors ? `
-                           ${link.variant === 'solid' ? 'bg-white text-black hover:bg-[#E5E5EA] shadow-xl shadow-white/5' : ''}
-                           ${link.variant === 'glass' ? 'bg-[#1C1C1E]/40 hover:bg-[#2C2C2E]/60 backdrop-blur-2xl border border-white/[0.06] text-white hover:border-white/10' : ''}
-                           ${link.variant === 'outline' ? 'bg-transparent border-2 border-white/10 hover:border-white/30 text-white' : ''}
-                        ` : '';
-
-                        return (
-                           <a
-                              key={link.id}
-                              href={link.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={hasCustomColors ? customStyle : undefined}
-                              className={`group relative flex items-center justify-between p-1 pr-4 rounded-[24px] transition-all duration-300 active:scale-[0.98] hover:border-white/20 ${variantClasses} ${hasCustomColors ? 'hover:opacity-90 hover:-translate-y-0.5' : ''}`}
-                           >
+                                                {links.map((link: any) => {
+                                                   const hasCustomColors = link.bgColor && link.bgColor !== 'transparent';
+                     
+                                                   const customStyle: React.CSSProperties = hasCustomColors ? {
+                                                      backgroundColor: link.bgColor,
+                                                      color: link.textColor || '#ffffff',
+                                                      borderColor: link.borderColor || 'rgba(255,255,255,0.1)',
+                                                      boxShadow: link.shadow ? `0 10px 30px -5px ${link.bgColor}60` : 'none',
+                                                   } : {};
+                     
+                                                   // Variant-based classes when no custom colors
+                                                   const variantClasses = !hasCustomColors ? `
+                                                      ${link.variant === 'solid' ? 'bg-white text-black hover:bg-[#E5E5EA] shadow-xl shadow-white/5' : ''}
+                                                      ${link.variant === 'glass' ? 'bg-[#1C1C1E]/40 hover:bg-[#2C2C2E]/60 backdrop-blur-2xl border border-white/[0.06] text-white hover:border-white/10' : ''}
+                                                      ${link.variant === 'outline' ? 'bg-transparent border-2 border-white/10 hover:border-white/30 text-white' : ''}
+                                                   ` : '';
+                     
+                                                   const dynamicPaddingClasses = hasCustomColors
+                                                      ? link.size === 'sm'
+                                                         ? 'py-1 px-4'
+                                                         : link.size === 'lg'
+                                                            ? 'py-2 px-8'
+                                                            : 'py-1 px-6'
+                                                      : 'p-1 pr-4'; // Default padding for non-custom links
+                     
+                                                   const dynamicBorderRadiusClasses = hasCustomColors
+                                                      ? link.roundness === 'square'
+                                                         ? 'rounded-[24px]'
+                                                         : link.roundness === 'pill'
+                                                            ? 'rounded-full'
+                                                            : 'rounded-[24px]' // Default for custom links
+                                                      : 'rounded-[24px]'; // Default border radius for non-custom links
+                     
+                                                   return (
+                                                      <a
+                                                         key={link.id}
+                                                         href={link.url}
+                                                         target="_blank"
+                                                         rel="noopener noreferrer"
+                                                         style={hasCustomColors ? customStyle : undefined}
+                                                         className={`group relative flex items-center justify-between transition-all duration-300 active:scale-[0.98] hover:border-white/20 ${variantClasses} ${hasCustomColors ? 'hover:opacity-90 hover:-translate-y-0.5' : ''} ${dynamicPaddingClasses} ${dynamicBorderRadiusClasses}`}
+                                                      >
                               <div className="flex items-center gap-4">
                                  <div className={`p-3.5 rounded-[20px] transition-colors duration-300 ${hasCustomColors ? 'bg-white/10' : link.variant === 'solid' ? 'bg-black/5 text-black' : 'bg-white/[0.07] text-white'}`}>
                                     <DynamicIcon name={link.iconKey} size={22} strokeWidth={2.5} />
@@ -461,6 +478,7 @@ const App: React.FC = () => {
                               <a
                                  key={project.id}
                                  href={project.url}
+                                 title={project.title}
                                  className={`group relative flex flex-col justify-between p-5 bg-[#1C1C1E]/40 hover:bg-[#2C2C2E]/60 backdrop-blur-2xl border border-white/[0.06] rounded-[28px] transition-all duration-300 active:scale-[0.97] hover:shadow-2xl overflow-hidden hover:border-white/20 ${index === 0 ? 'col-span-2 aspect-[2.2/1]' : 'aspect-square'}`}
                               >
                                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br from-white/20 to-transparent`} />
@@ -475,8 +493,10 @@ const App: React.FC = () => {
                                           rel="noopener noreferrer"
                                           onClick={(e) => e.stopPropagation()}
                                           className="p-2 rounded-full bg-white/5 text-white/50 hover:text-white hover:bg-white/10 transition-colors"
+                                          aria-label="View source on GitHub"
+                                          title="View source on GitHub"
                                        >
-                                          <LucideIcons.Github size={16} />
+                                          <LucideIcons.Github size={16} aria-hidden="true" />
                                        </a>
                                        <LucideIcons.ArrowUpRight size={16} className="text-white/50 group-hover:text-white transition-colors" />
                                     </div>
@@ -576,14 +596,14 @@ const App: React.FC = () => {
                            </a>
                            
                            <div className="flex gap-3 mt-2 justify-center">
-                              <a href="https://linkedin.com/in/jinuk-chathusa" target="_blank" rel="noopener noreferrer" className="p-3 bg-black/5 rounded-full hover:bg-black/10 transition-colors">
-                                 <LucideIcons.Linkedin size={20} />
+                              <a href="https://linkedin.com/in/jinuk-chathusa" target="_blank" rel="noopener noreferrer" className="p-3 bg-black/5 rounded-full hover:bg-black/10 transition-colors" aria-label="LinkedIn" title="LinkedIn">
+                                 <LucideIcons.Linkedin size={20} aria-hidden="true" />
                               </a>
-                              <a href="https://x.com/Dill_Ruzz" target="_blank" rel="noopener noreferrer" className="p-3 bg-black/5 rounded-full hover:bg-black/10 transition-colors">
-                                 <LucideIcons.Twitter size={20} />
+                              <a href="https://x.com/Dill_Ruzz" target="_blank" rel="noopener noreferrer" className="p-3 bg-black/5 rounded-full hover:bg-black/10 transition-colors" aria-label="X (Twitter)" title="X (Twitter)">
+                                 <LucideIcons.Twitter size={20} aria-hidden="true" />
                               </a>
-                              <a href="https://github.com/dill-lk" target="_blank" rel="noopener noreferrer" className="p-3 bg-black/5 rounded-full hover:bg-black/10 transition-colors">
-                                 <LucideIcons.Github size={20} />
+                              <a href="https://github.com/dill-lk" target="_blank" rel="noopener noreferrer" className="p-3 bg-black/5 rounded-full hover:bg-black/10 transition-colors" aria-label="GitHub" title="GitHub">
+                                 <LucideIcons.Github size={20} aria-hidden="true" />
                               </a>
                            </div>
                         </div>
@@ -629,14 +649,16 @@ const App: React.FC = () => {
                         <button
                            onClick={() => setShowQR(!showQR)}
                            className="flex items-center gap-2.5 px-3 py-2.5 rounded-full bg-[#1C1C1E]/80 hover:bg-[#2C2C2E] backdrop-blur-md text-[#EBEBF5] border border-white/[0.08] transition-all active:scale-95 hover:border-white/20 shadow-lg"
+                           aria-label={showQR ? 'Hide QR code' : 'Show QR code'}
+                           title={showQR ? 'Hide QR code' : 'Show QR code'}
                         >
-                           <LucideIcons.QrCode size={14} className="text-[#86868B]" />
+                           <LucideIcons.QrCode size={14} className="text-[#86868B]" aria-hidden="true" />
                         </button>
                      </div>
 
-                     {showQR && (
+                        {showQR && (
                         <div className="bg-white p-4 rounded-xl animate-slide-up">
-                           <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${window.location.href}`} className="rounded-lg" />
+                           <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${window.location.href}`} alt="QR code for this page" className="rounded-lg" />
                         </div>
                      )}
 
@@ -690,13 +712,16 @@ const App: React.FC = () => {
                setState={(newState) => {
                   if (newState.profile) setProfile(prev => ({ ...prev, ...newState.profile }));
                   if (newState.experience) setExperience(newState.experience);
-                  if (newState.skills) setSkills(newState.skills);
+                  // Ensure incoming skills include required `category` field
+                  if (newState.skills) setSkills(newState.skills.map((s: any) => ({ category: s.category ?? 'general', ...s })));
                   if (newState.projects) setProjects(newState.projects);
                   if (newState.posts) setPosts(newState.posts);
-                  if (newState.links) setLinks(newState.links);
+                  // Ensure links always have a subtitle (some admin payloads omit it)
+                  if (newState.links) setLinks(newState.links.map((l: any) => ({ subtitle: l.subtitle ?? '', ...l })));
                   if (newState.videos) setVideos(newState.videos);
                   if (newState.music) setMusic(prev => ({ ...prev, ...newState.music }));
-                  if (newState.actions) setActions(newState.actions);
+                  // Normalize actions so presentation fields are present to match the app expectations
+                  if (newState.actions) setActions(newState.actions.map((a: any) => ({ customClasses: a.customClasses ?? '', rounded: a.rounded ?? 'full', size: a.size ?? 'medium', ...a })));
                   if (newState.stack) setStack(newState.stack);
                   if (newState.testimonials) setTestimonials(newState.testimonials);
                   if (newState.systemHealth) setSystemHealth(prev => ({ ...prev, ...newState.systemHealth }));

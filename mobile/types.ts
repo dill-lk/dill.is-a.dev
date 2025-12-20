@@ -72,6 +72,9 @@ export interface Action {
   icon: string;
   color: string;
   customClasses?: string;
+  // Optional presentation fields used by the admin/config
+  rounded?: string;
+  size?: string;
 }
 
 export interface Experience {

@@ -39,7 +39,7 @@ const ActionsTab: React.FC<ActionsTabProps> = ({ data, onChange }) => {
                     onClick={addAction}
                     className="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors flex items-center gap-2"
                 >
-                    <LucideIcons.Plus size={14} />
+                    <LucideIcons.Plus size={14} aria-hidden="true" />
                     Add Action
                 </button>
             </div>
@@ -69,6 +69,7 @@ const ActionsTab: React.FC<ActionsTabProps> = ({ data, onChange }) => {
 
                                     <div className="grid grid-cols-3 gap-3">
                                         <select
+                                            aria-label="Button style"
                                             value={action.style}
                                             onChange={(e) => updateAction(action.id, 'style', e.target.value)}
                                             className="bg-white/5 rounded-lg p-2 text-xs text-white outline-none border border-white/5"
@@ -87,6 +88,7 @@ const ActionsTab: React.FC<ActionsTabProps> = ({ data, onChange }) => {
                                         />
 
                                         <select
+                                            aria-label="Button color"
                                             value={action.color}
                                             onChange={(e) => updateAction(action.id, 'color', e.target.value)}
                                             className="bg-white/5 rounded-lg p-2 text-xs text-white outline-none border border-white/5"
@@ -116,8 +118,10 @@ const ActionsTab: React.FC<ActionsTabProps> = ({ data, onChange }) => {
                                 <button
                                     onClick={() => deleteAction(action.id)}
                                     className="p-2 bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white rounded-lg transition-colors"
+                                    aria-label="Delete action"
+                                    title="Delete action"
                                 >
-                                    <LucideIcons.Trash2 size={16} />
+                                    <LucideIcons.Trash2 size={16} aria-hidden="true" />
                                 </button>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Home, ArrowLeft } from 'lucide-react';
+import { Home, ArrowLeft, Search } from 'lucide-react';
 
 const NotFound: React.FC = () => {
   return (
@@ -28,7 +28,7 @@ const NotFound: React.FC = () => {
           </div>
 
           {/* Helpful Actions */}
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 mt-8 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 mt-8 animate-slide-up delay-100">
             <Link 
               to="/" 
               className="group flex items-center gap-3 bg-brand-500 text-white px-8 py-4 rounded-lg font-medium text-base hover:bg-brand-400 transition-all duration-300"
@@ -50,7 +50,7 @@ const NotFound: React.FC = () => {
           <div className="w-px h-24 bg-gradient-to-b from-white/20 to-transparent mt-16 mb-16"></div>
 
           {/* Suggested Links - Minimalist List */}
-          <div className="text-left w-full max-w-md animate-slide-up" style={{ animationDelay: '0.2s' }}>
+          <div className="text-left w-full max-w-md animate-slide-up delay-200">
             <p className="text-brand-400 text-xs font-mono uppercase tracking-widest mb-6 text-center">Recommended Destinations</p>
             <ul className="space-y-4">
                 <li>

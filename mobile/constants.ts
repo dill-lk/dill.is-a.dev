@@ -34,11 +34,11 @@ export const INITIAL_STATS = [
 ];
 
 export const INITIAL_SKILLS = [
-  { id: "sk1", name: "React", level: 95 },
-  { id: "sk2", name: "TypeScript", level: 90 },
-  { id: "sk3", name: "Node.js", level: 88 },
-  { id: "sk4", name: "Next.js", level: 92 },
-  { id: "sk5", name: "Tailwind CSS", level: 95 }
+  { id: "sk1", name: "React", level: 95, category: "framework" },
+  { id: "sk2", name: "TypeScript", level: 90, category: "language" },
+  { id: "sk3", name: "Node.js", level: 88, category: "backend" },
+  { id: "sk4", name: "Next.js", level: 92, category: "framework" },
+  { id: "sk5", name: "Tailwind CSS", level: 95, category: "styling" }
 ];
 
 export const INITIAL_TESTIMONIALS = [

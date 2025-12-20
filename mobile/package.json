@@ -1,5 +1,5 @@
 {
-  "name": "dill's-ai-portfolio",
+  "name": "dills-ai-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,8 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@google/genai": "^1.31.0",
-    "@google/generative-ai": "^0.24.1",
+    
     "lucide-react": "^0.556.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
