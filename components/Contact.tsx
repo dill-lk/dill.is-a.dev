@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowRight, Mail, MapPin } from 'lucide-react';
 import ArrowAnimation from './ArrowAnimation';
-import Footer from './Footer';
 
 const Contact: React.FC = () => {
   return (
@@ -36,21 +35,29 @@ const Contact: React.FC = () => {
                         <ArrowAnimation />
                      </div>
                      
-                     <a href="mailto:dill.ruzz.official@gmail.com" className="group w-full md:w-auto flex items-center justify-between md:justify-end gap-8 text-2xl md:text-4xl font-light text-[var(--foreground)] mb-16 pb-4 border-b border-white/10 hover:border-white transition-all duration-500 relative z-30">
-                        <span>dill.ruzz.official@gmail.com</span>
-                        <div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-500">
-                           <ArrowRight size={24} className="-rotate-45 group-hover:rotate-0 transition-transform duration-500" />
-                        </div>
-                     </a>
+                     <div className="flex flex-col gap-6 w-full">
+                        <a href="mailto:dill.ruzz.official@gmail.com" className="group w-full md:w-auto flex items-center justify-between md:justify-end gap-8 text-2xl md:text-4xl font-light text-[var(--foreground)] pb-4 border-b border-white/10 hover:border-white transition-all duration-500 relative z-30">
+                           <span>dill.ruzz.official@gmail.com</span>
+                           <div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-500">
+                              <ArrowRight size={24} className="-rotate-45 group-hover:rotate-0 transition-transform duration-500" />
+                           </div>
+                        </a>
+                        <a href="https://wa.me/94771396311" target="_blank" rel="noopener noreferrer" className="group w-full md:w-auto flex items-center justify-between md:justify-end gap-8 text-2xl md:text-4xl font-light text-[var(--foreground)] mb-16 pb-4 border-b border-white/10 hover:border-white transition-all duration-500 relative z-30">
+                           <span>Chat on WhatsApp</span>
+                           <div className="w-16 h-16 rounded-full border border-green-500/20 flex items-center justify-center group-hover:bg-green-500 group-hover:text-white transition-all duration-500">
+                              <ArrowRight size={24} className="-rotate-45 group-hover:rotate-0 transition-transform duration-500" />
+                           </div>
+                        </a>
+                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 md:grid-cols-2 gap-x-20 gap-y-10 text-left md:text-right w-full md:w-auto">
                       <div>
                           <h4 className="text-[var(--brand-500)] text-xs font-mono uppercase tracking-widest mb-4">Social</h4>
                           <div className="flex flex-col gap-2">
-                            <a href="#" className="text-lg text-[var(--foreground)] hover:text-[var(--brand-300)] transition-colors">LinkedIn</a>
-                            <a href="#" className="text-lg text-[var(--foreground)] hover:text-[var(--brand-300)] transition-colors">Twitter / X</a>
-                            <a href="#" className="text-lg text-[var(--foreground)] hover:text-[var(--brand-300)] transition-colors">GitHub</a>
+                            <a href="https://linkedin.com/in/jinuk-chathusa" target="_blank" rel="noopener noreferrer" className="text-lg text-[var(--foreground)] hover:text-[var(--brand-300)] transition-colors">LinkedIn</a>
+                            <a href="https://x.com/Dill_Ruzz" target="_blank" rel="noopener noreferrer" className="text-lg text-[var(--foreground)] hover:text-[var(--brand-300)] transition-colors">Twitter / X</a>
+                            <a href="https://github.com/dill-lk" target="_blank" rel="noopener noreferrer" className="text-lg text-[var(--foreground)] hover:text-[var(--brand-300)] transition-colors">GitHub</a>
                           </div>
                       </div>
                       <div>
@@ -66,7 +73,6 @@ const Contact: React.FC = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

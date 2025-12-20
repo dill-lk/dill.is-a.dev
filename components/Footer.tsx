@@ -1,5 +1,7 @@
 import React from 'react';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Github, Twitter, MessageCircle, Video, Mail } from 'lucide-react';
+import { SOCIAL_LINKS } from '../constants';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -18,14 +20,17 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-6">
-          <a href="#" className="text-brand-300/60 hover:text-brand-400 transition-colors">
+          <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="text-brand-300/60 hover:text-brand-400 transition-colors">
             <Github size={20} />
           </a>
-          <a href="#" className="text-brand-300/60 hover:text-brand-400 transition-colors">
-            <Linkedin size={20} />
-          </a>
-          <a href="#" className="text-brand-300/60 hover:text-brand-400 transition-colors">
+          <a href={SOCIAL_LINKS.x} target="_blank" rel="noopener noreferrer" className="text-brand-300/60 hover:text-brand-400 transition-colors">
             <Twitter size={20} />
+          </a>
+          <a href={SOCIAL_LINKS.tiktok} target="_blank" rel="noopener noreferrer" className="text-brand-300/60 hover:text-brand-400 transition-colors">
+            <Video size={20} />
+          </a>
+          <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noopener noreferrer" className="text-brand-300/60 hover:text-brand-400 transition-colors">
+            <MessageCircle size={20} />
           </a>
           <a href="mailto:hello@example.com" className="text-brand-300/60 hover:text-brand-400 transition-colors">
             <Mail size={20} />
@@ -33,8 +38,8 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-8 text-sm text-brand-300/60">
-          <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+          <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
         </div>
 
       </div>

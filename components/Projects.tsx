@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight, Github, Folder } from 'lucide-react';
 import { PROJECTS_DATA } from '../constants';
 
@@ -23,11 +23,12 @@ const Projects: React.FC = () => {
         </div>
 
         {/* Apple Store Style Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {PROJECTS_DATA.map((project, idx) => (
-            <div 
+            <Link 
+              to={`/project/${project.id}`}
               key={project.id} 
-              className={`group relative bg-[#1c1c1e] rounded-[32px] overflow-hidden border border-white/5 shadow-2xl hover:shadow-[0_0_50px_rgba(255,255,255,0.05)] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] reveal-on-scroll delay-${(idx % 2) * 200}`}
+              className={`group relative block bg-[#1c1c1e] rounded-[32px] overflow-hidden border border-white/5 shadow-2xl hover:shadow-[0_0_50px_rgba(255,255,255,0.05)] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] reveal-on-scroll delay-${(idx % 2) * 200}`}
             >
               {/* Card Noise Texture */}
               <div className="absolute inset-0 opacity-[0.03] bg-noise pointer-events-none z-10 mix-blend-overlay"></div>
@@ -63,15 +64,19 @@ const Projects: React.FC = () => {
                     
                     <div className="flex gap-3 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500 delay-100">
                         {project.github && (
-                            <a href={project.github} className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors cursor-none">
+                            <a 
+                              href={project.github} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors"
+                              title="View Source on GitHub"
+                            >
                                 <Github size={18} />
                             </a>
                         )}
-                        {project.link && (
-                            <a href={project.link} className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-brand-200 transition-colors cursor-none">
-                                <ArrowUpRight size={18} />
-                            </a>
-                        )}
+                        <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-brand-200 transition-colors">
+                            <ArrowUpRight size={18} />
+                        </div>
                     </div>
                  </div>
                  
@@ -79,18 +84,18 @@ const Projects: React.FC = () => {
                     {project.description}
                  </p>
 
-                 <div className="flex items-center text-blue-400 font-medium text-sm group/link cursor-none">
+                 <div className="flex items-center text-blue-400 font-medium text-sm group/link">
                     <span className="group-hover/link:underline decoration-2 underline-offset-4">View Case Study</span>
                     <ArrowUpRight size={14} className="ml-1 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                  </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         
         <div className="mt-32 flex flex-col items-center reveal-on-scroll">
             <p className="text-brand-500 font-mono text-xs uppercase tracking-widest mb-6">Explore the full archive</p>
-            <a href="https://github.com/dill-lk" className="px-10 py-4 rounded-full bg-[#1c1c1e] border border-white/10 text-white font-medium hover:bg-white hover:text-black transition-all duration-500 shadow-lg hover:shadow-white/10 cursor-none">
+            <a href="https://github.com/dill-lk" className="px-10 py-4 rounded-full bg-[#1c1c1e] border border-white/10 text-white font-medium hover:bg-white hover:text-black transition-all duration-500 shadow-lg hover:shadow-white/10">
                 View GitHub Profile
             </a>
         </div>

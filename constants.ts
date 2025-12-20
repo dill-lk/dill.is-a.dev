@@ -62,32 +62,144 @@ export const EXPERIENCE_DATA: Experience[] = [
   }
 ];
 
+export const SOCIAL_LINKS = {
+  github: "https://github.com/dill-lk",
+  tiktok: "https://www.tiktok.com/@dill_ruzzz",
+  whatsapp: "https://wa.me/94771396311",
+  x: "https://x.com/Dill_Ruzz"
+};
+
 export const PROJECTS_DATA: Project[] = [
   {
     id: "p1",
     title: "Corporate Intranet Redesign",
-    description: "Led the end-to-end redesign of a corporate intranet portal for a mid-sized company. Focused on improving user experience, streamlining content delivery, and integrating with existing internal tools.",
-    tags: ["React", "SharePoint API", "UI/UX", "Tailwind CSS"],
-    github: "https://github.com/dill-lk",
-    link: "#",
+    description: "Architected a high-performance intranet portal serving 500+ employees. Implemented a custom caching layer using Redis to reduce API latency by 60% and integrated multi-tenant authentication via SharePoint API.",
+    tags: ["React", "Redis", "SharePoint API", "Tailwind CSS"],
+    github: SOCIAL_LINKS.github,
+    link: "/project/p1",
     image: "/assets/1.jpeg"
   },
   {
     id: "p2",
     title: "Inventory Management System",
-    description: "Developed a custom inventory management system for a local retail business. The system tracks stock levels, sales data, and generates reports to help with restocking decisions.",
-    tags: ["Next.js", "PostgreSQL", "Prisma", "Node.js"],
-    github: "https://github.com/dill-lk",
+    description: "Developed a full-stack inventory tracking system with real-time stock synchronization. Leveraged PostgreSQL with Prisma ORM for type-safe database operations and optimized complex join queries.",
+    tags: ["Next.js", "PostgreSQL", "Prisma", "WebSockets"],
+    github: SOCIAL_LINKS.github,
+    link: "/project/p2",
     image: "/assets/2.jpeg"
   },
   {
     id: "p3",
     title: "Personal Portfolio Website",
-    description: "Designed and built this personal portfolio website from scratch. The goal was to create a clean, modern, and performant site to showcase my skills and projects.",
-    tags: ["Vite", "React", "TypeScript", "Framer Motion"],
-    github: "https://github.com/dill-lk",
-    link: "#",
+    description: "A premium, performant portfolio built with Vite and React. Features an integrated AI assistant powered by Google Gemini and a specialized 'Titanium OS' mobile view.",
+    tags: ["Vite", "React", "Gemini AI", "Framer Motion"],
+    github: SOCIAL_LINKS.github,
+    link: "/project/p3",
     image: "/assets/3.jpeg"
+  }
+];
+
+export const ARTICLES_DATA = [
+  {
+    id: "loading-spinner",
+    year: "2024",
+    category: "Engineering",
+    title: "The Death of the Loading Spinner: Optimistic UI Patterns",
+    link: "/article/loading-spinner",
+    date: "March 12, 2024",
+    content: `
+      <p>Optimistic UI is a pattern where the interface responds to user actions immediately. Below is a high-grade implementation example using React and a custom hook:</p>
+      <pre><code>
+const useOptimisticUpdate = (mutationFn) => {
+  const [state, setState] = useState('idle');
+  
+  const execute = async (data) => {
+    // 1. Update UI immediately
+    updateLocalCache(data); 
+    
+    try {
+      await mutationFn(data);
+      setState('success');
+    } catch (err) {
+      // 2. Rollback on failure
+      rollbackCache();
+      setState('error');
+    }
+  };
+  
+  return { execute, state };
+};
+      </code></pre>
+      <h2>Why it matters</h2>
+      <p>Reduced perceived latency leads to higher user retention and a 'premium' feel that standard spinners can't provide.</p>
+    `
+  },
+  {
+    id: "scaling-migration",
+    year: "2024",
+    category: "System Design",
+    title: "Architecting for Scale: Lessons from a 100k User Migration",
+    link: "/article/scaling-migration",
+    date: "January 25, 2024",
+    content: `
+      <p>Migrating a database under load requires zero-downtime strategies. Here is how we handled the throughput throttling:</p>
+      <pre><code>
+// Throttled batch migration script
+async function migrateBatch(records) {
+  const BATCH_SIZE = 500;
+  for (let i = 0; i < records.length; i += BATCH_SIZE) {
+    const batch = records.slice(i, i + BATCH_SIZE);
+    await db.target.insertMany(batch);
+    
+    // Controlled delay to prevent CPU spikes
+    await new Promise(resolve => setTimeout(resolve, 100)); 
+  }
+}
+      </code></pre>
+      <h2>The Result</h2>
+      <p>We achieved a 99.9% success rate during the transition with zero impact on the end-user experience.</p>
+    `
+  },
+  {
+    id: "tailwind-war",
+    year: "2023",
+    category: "Opinion",
+    title: "Why Tailwind CSS Won the War",
+    link: "/article/tailwind-war",
+    date: "November 10, 2023",
+    content: `
+      <p>The developer velocity provided by utility-first CSS is undeniable. Look at the clarity of this complex card component:</p>
+      <pre><code>
+&lt;div className="group relative rounded-3xl bg-white/5 p-8 backdrop-blur-xl border border-white/10 hover:scale-[1.02] transition-all duration-500"&gt;
+  &lt;div className="flex justify-between items-center"&gt;
+    &lt;h3 className="text-2xl font-bold tracking-tight text-white"&gt;High-Speed Dev&lt;/h3&gt;
+    &lt;span className="px-3 py-1 bg-blue-500 rounded-full text-[10px] uppercase font-black"&gt;New&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+      </code></pre>
+    `
+  },
+  {
+    id: "design-systems-react",
+    year: "2023",
+    category: "Frontend",
+    title: "Bridging the Gap: Design Systems in React",
+    link: "/article/design-systems-react",
+    date: "September 05, 2023",
+    content: `
+      <p>A true design system is about composition. In React, we use the 'Compound Component' pattern to provide flexibility:</p>
+      <pre><code>
+const Card = ({ children }) => &lt;div className="card"&gt;{children}&lt;/div&gt;;
+Card.Header = ({ title }) => &lt;h2&gt;{title}&lt;/h2&gt;;
+Card.Body = ({ content }) => &lt;p&gt;{content}&lt;/p&gt;;
+
+// Usage:
+&lt;Card&gt;
+  &lt;Card.Header title="Pro Architecture" /&gt;
+  &lt;Card.Body content="Seamless scalability." /&gt;
+&lt;/Card&gt;
+      </code></pre>
+    `
   }
 ];
 
@@ -103,6 +215,9 @@ Bio: ${ABOUT_DATA}
 Skills: ${JSON.stringify(SKILLS_DATA)}
 Experience: ${JSON.stringify(EXPERIENCE_DATA)}
 Projects: ${JSON.stringify(PROJECTS_DATA)}
+Social Links: ${JSON.stringify(SOCIAL_LINKS)}
+Contact Email: dill.ruzz.official@gmail.com
+WhatsApp: https://wa.me/94771396311
 
 Tone: Professional, enthusiastic, technical but accessible.
 `;

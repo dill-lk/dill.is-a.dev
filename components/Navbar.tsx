@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon, Download } from 'lucide-react';
 import { NAV_LINKS } from '../constants';
 
@@ -10,6 +11,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +25,13 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
+  const getHref = (href: string) => {
+    if (href.startsWith('#')) {
+      return location.pathname === '/' ? href : `/${href}`;
+    }
+    return href;
+  };
+
   return (
     <>
       <nav
@@ -33,9 +42,9 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
           } group overflow-hidden hidden md:flex items-center justify-between`}
       >
 
-        <a href="#hero" className={`font-semibold tracking-tight text-white z-20 whitespace-nowrap transition-all duration-500 pl-6 md:pl-8 ${isScrolled ? 'opacity-100 text-base' : 'text-2xl'}`}>
+        <Link to="/" className={`font-semibold tracking-tight text-white z-20 whitespace-nowrap transition-all duration-500 pl-6 md:pl-8 ${isScrolled ? 'opacity-100 text-base' : 'text-2xl'}`}>
           JINUK<span className="text-brand-400">.</span>
-        </a>
+        </Link>
 
         {/* Desktop Nav - Smart Hiding */}
         <div className={`flex items-center gap-1 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] pr-2
@@ -44,7 +53,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
-              href={link.href}
+              href={getHref(link.href)}
               className={`font-medium text-brand-300 hover:text-white transition-all duration-300 rounded-full hover:bg-white/[0.08] whitespace-nowrap
                   ${isScrolled ? 'text-[12px] px-4 py-1.5' : 'text-sm px-6 py-2'}
                 `}
@@ -85,7 +94,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
       {/* Mobile Nav Button */}
       <div className="fixed top-6 right-6 z-[60] md:hidden">
         <button
-          className="w-12 h-12 rounded-full bg-black/50 backdrop-blur-xl border border-white/10 text-white flex items-center justify-center shadow-2xl cursor-none"
+          className="w-12 h-12 rounded-full bg-black/50 backdrop-blur-xl border border-white/10 text-white flex items-center justify-center shadow-2xl"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -97,7 +106,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
         {NAV_LINKS.map((link, idx) => (
           <a
             key={link.label}
-            href={link.href}
+            href={getHref(link.href)}
             onClick={() => setMobileMenuOpen(false)}
             className="text-4xl font-light text-white hover:text-brand-300 transition-all transform translate-y-0 tracking-tight"
             style={{ transitionDelay: `${idx * 50}ms` }}

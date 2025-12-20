@@ -1,8 +1,12 @@
 import React from 'react';
 
-const HandAnimation: React.FC = () => {
+interface HandAnimationProps {
+  className?: string;
+}
+
+const HandAnimation: React.FC<HandAnimationProps> = ({ className = "" }) => {
   return (
-    <div className="w-12 h-6 md:w-16 md:h-8 relative ml-2 opacity-90">
+    <div className={`w-12 h-6 md:w-16 md:h-8 relative ml-2 opacity-90 ${className}`}>
       <style>{`
         @keyframes drawHand {
           0% { stroke-dashoffset: 5000; fill-opacity: 0; stroke-opacity: 1; }

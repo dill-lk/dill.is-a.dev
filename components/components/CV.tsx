@@ -1,6 +1,6 @@
 import React from 'react';
 import { MapPin, Mail, Linkedin, Github, ExternalLink } from 'lucide-react';
-import Foruflower from './foruflower';
+import Foruflower from '../foruflower';
 
 // Simple cross icon SVG to match the site's vibe
 const CrossIcon = () => (

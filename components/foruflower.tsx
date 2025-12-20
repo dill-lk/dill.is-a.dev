@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const foruflower: React.FC = () => {
+const Foruflower: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const dragStartRef = useRef({ x: 0, y: 0 });
@@ -76,4 +76,4 @@ const foruflower: React.FC = () => {
   );
 };
 
-export default foruflower;
+export default Foruflower;

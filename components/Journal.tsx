@@ -1,36 +1,11 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
-
-const articles = [
-    {
-        year: "2024",
-        title: "The Death of the Loading Spinner: Optimistic UI Patterns",
-        category: "Engineering",
-        link: "#"
-    },
-    {
-        year: "2024",
-        title: "Architecting for Scale: Lessons from a 100k User Migration",
-        category: "System Design",
-        link: "#"
-    },
-    {
-        year: "2023",
-        title: "Why Tailwind CSS Won the War",
-        category: "Opinion",
-        link: "#"
-    },
-    {
-        year: "2023",
-        title: "Bridging the Gap: Design Systems in React",
-        category: "Frontend",
-        link: "#"
-    }
-];
+import { Link } from 'react-router-dom';
+import { ARTICLES_DATA } from '../constants';
 
 const Journal: React.FC = () => {
     return (
-        <section className="py-40 bg-black border-t border-white/5">
+        <section className="py-40 bg-black border-t border-white/5" id="journal">
             <div className="container mx-auto px-6 max-w-[1400px]">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24 reveal-on-scroll">
                     <div>
@@ -39,16 +14,16 @@ const Journal: React.FC = () => {
                             Insights & <span className="font-serif italic text-brand-500">Writing</span>
                         </h3>
                     </div>
-                    <a href="#" className="hidden md:flex items-center gap-2 text-brand-400 hover:text-white transition-colors text-sm font-mono uppercase tracking-widest pb-2 border-b border-transparent hover:border-white">
+                    <Link to="/journal" className="hidden md:flex items-center gap-2 text-brand-400 hover:text-white transition-colors text-sm font-mono uppercase tracking-widest pb-2 border-b border-transparent hover:border-white">
                         Read all articles <ArrowUpRight size={14} />
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="flex flex-col">
-                    {articles.map((article, idx) => (
-                        <a 
-                            key={idx} 
-                            href={article.link} 
+                    {ARTICLES_DATA.map((article, idx) => (
+                        <Link 
+                            key={article.id} 
+                            to={article.link} 
                             className="group flex flex-col md:flex-row justify-between items-start md:items-center py-10 border-t border-white/10 hover:bg-white/[0.02] transition-colors px-4 reveal-on-scroll"
                             style={{ transitionDelay: `${idx * 100}ms` }}
                         >
@@ -65,7 +40,7 @@ const Journal: React.FC = () => {
                                 </span>
                                 <ArrowUpRight size={20} className="text-white opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 -translate-x-2 group-hover:translate-x-0 transition-all duration-500" />
                             </div>
-                        </a>
+                        </Link>
                     ))}
                     <div className="h-[1px] w-full bg-white/10"></div>
                 </div>

@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Philosophy from './components/Philosophy';
-import Process from './components/Process';
-import Skills from './components/Skills';
-import Services from './components/Services';
-import Experience from './components/Experience';
-import Projects from './components/Projects';
-import Journal from './components/Journal';
-import Testimonials from './components/Testimonials';
-import Contact from './components/Contact';
+import Home from './pages/Home';
+import ProjectDetail from './pages/ProjectDetail';
+import ArticleDetail from './pages/ArticleDetail';
+import JournalPage from './pages/JournalPage';
+import NotFound from './pages/NotFound';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 import ChatWidget from './components/ChatWidget';
-import CustomCursor from './components/CustomCursor';
-import BlurFade from './components/BlurFade';
+import Footer from './components/Footer';
+import MobileApp from './mobile/App';
 
 const App: React.FC = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1367);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
@@ -30,8 +37,16 @@ const App: React.FC = () => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  if (isMobile) {
+    return (
+      <Router>
+        <MobileApp />
+      </Router>
+    );
+  }
+
   return (
-    <>
+    <Router>
       <style>{`
         html {
           scroll-behavior: smooth;
@@ -59,25 +74,21 @@ const App: React.FC = () => {
           --brand-950: #f9fafb;
         }
       `}</style>
-      <div className="min-h-screen bg-background text-brand-100 font-sans selection:bg-white selection:text-black overflow-x-hidden overflow-y-auto cursor-none">
-        <CustomCursor />
+      <div className="min-h-screen bg-background text-brand-100 font-sans selection:bg-white selection:text-black overflow-x-hidden overflow-y-auto">
         <Navbar theme={theme} setTheme={setTheme} />
-        <main>
-          <Hero />
-          <About />
-          <BlurFade delay={0.2}><Philosophy /></BlurFade>
-          <BlurFade delay={0.2}><Process /></BlurFade>
-          <BlurFade delay={0.2}><Skills /></BlurFade>
-          <BlurFade delay={0.2}><Services /></BlurFade>
-          <BlurFade delay={0.2}><Experience /></BlurFade>
-          <BlurFade delay={0.2}><Projects /></BlurFade>
-          <Journal />
-          <Testimonials />
-          <BlurFade delay={0.2}><Contact /></BlurFade>
-        </main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/project/:id" element={<ProjectDetail />} />
+          <Route path="/article/:id" element={<ArticleDetail />} />
+          <Route path="/journal" element={<JournalPage />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
         <ChatWidget />
       </div>
-    </>
+    </Router>
   );
 };
 

@@ -78,7 +78,7 @@ const Skills: React.FC = () => {
              {row1.map((skill, idx) => (
                 <div key={`${skill}-${idx}-1`} className="mx-4 group relative flex items-center justify-center">
                     <div 
-                      className="w-[90px] h-[90px] md:w-[110px] md:h-[110px] rounded-[24px] bg-[#151516] border border-white/[0.08] flex flex-col items-center justify-center gap-3 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:bg-[#222] group-hover:scale-110 group-hover:shadow-[0_25px_50px_rgba(0,0,0,0.7)] cursor-none relative overflow-hidden shrink-0 backdrop-blur-md"
+                      className="w-[90px] h-[90px] md:w-[110px] md:h-[110px] rounded-[24px] bg-[#151516] border border-white/[0.08] flex flex-col items-center justify-center gap-3 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:bg-[#222] group-hover:scale-110 group-hover:shadow-[0_25px_50px_rgba(0,0,0,0.7)] relative overflow-hidden shrink-0 backdrop-blur-md"
                     >
                         {/* Apple-style glossy sheen */}
                         <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -106,7 +106,7 @@ const Skills: React.FC = () => {
              {row2.map((skill, idx) => (
                 <div key={`${skill}-${idx}-2`} className="mx-4 group relative flex items-center justify-center">
                      <div 
-                      className="w-[90px] h-[90px] md:w-[110px] md:h-[110px] rounded-[24px] bg-[#151516] border border-white/[0.08] flex flex-col items-center justify-center gap-3 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:bg-[#222] group-hover:scale-110 group-hover:shadow-[0_25px_50px_rgba(0,0,0,0.7)] cursor-none relative overflow-hidden shrink-0 backdrop-blur-md"
+                      className="w-[90px] h-[90px] md:w-[110px] md:h-[110px] rounded-[24px] bg-[#151516] border border-white/[0.08] flex flex-col items-center justify-center gap-3 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:bg-[#222] group-hover:scale-110 group-hover:shadow-[0_25px_50px_rgba(0,0,0,0.7)] relative overflow-hidden shrink-0 backdrop-blur-md"
                     >
                         <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 

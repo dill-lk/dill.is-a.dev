@@ -1,6 +1,6 @@
 
 import React from 'react';
-import CoffeeAnimation from './CoffeeAnimation';
+import FlowerAnimation from './FlowerAnimation';
 
 const Stack: React.FC = () => {
     return (
@@ -9,7 +9,7 @@ const Stack: React.FC = () => {
                 {/* Coffee / Work CTA */}
                 <div className="flex flex-col items-center justify-center text-center reveal-on-scroll">
                     <div className="mb-8 p-4 bg-white/[0.02] rounded-full border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:bg-white/[0.04] transition-colors duration-500">
-                        <CoffeeAnimation />
+                        <FlowerAnimation />
                     </div>
                     <h3 className="text-3xl md:text-4xl font-medium text-white tracking-tight mb-3">
                         Need a coffee? <span className="text-brand-400 font-serif italic">Let's work.</span>

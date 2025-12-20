@@ -7,11 +7,11 @@ const Hero: React.FC = () => {
   const [displayText, setDisplayText] = useState("FULL STACK");
   const fullText = "FULL STACK";
 
-  const [ref1, isVisible1] = useOnScreen({ threshold: 0.1 });
-  const [ref2, isVisible2] = useOnScreen({ threshold: 0.1 });
-  const [ref3, isVisible3] = useOnScreen({ threshold: 0.1 });
-  const [ref4, isVisible4] = useOnScreen({ threshold: 0.1 });
-  const [ref5, isVisible5] = useOnScreen({ threshold: 0.1 }); // For the last div
+  const [ref1, isVisible1] = useOnScreen<HTMLDivElement>({ threshold: 0.1 });
+  const [ref2, isVisible2] = useOnScreen<HTMLDivElement>({ threshold: 0.1 });
+  const [ref3, isVisible3] = useOnScreen<HTMLHeadingElement>({ threshold: 0.1 });
+  const [ref4, isVisible4] = useOnScreen<HTMLHeadingElement>({ threshold: 0.1 });
+  const [ref5, isVisible5] = useOnScreen<HTMLDivElement>({ threshold: 0.1 }); // For the last div
 
   // Scramble effect on load
   useEffect(() => {
@@ -34,8 +34,8 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="hero" className="min-h-screen flex flex-col justify-end pb-8 md:pb-12 relative overflow-hidden bg-[var(--brand-950)] px-6">
-      <style jsx>{`
+    <section id="hero" className="min-h-screen flex flex-col justify-end pt-32 pb-8 md:pb-12 relative overflow-hidden bg-[var(--brand-950)] px-6">
+      <style>{`
         .fade-in-animation {
           opacity: 0;
           transform: translateY(20px);
@@ -82,12 +82,11 @@ const Hero: React.FC = () => {
         </div>
 
         <div className="relative border-t border-white/10 pt-4 md:pt-6">
-            <h1 ref={ref3} className={`slide-up-animation text-[13.5vw] leading-[0.8] font-bold tracking-tighter text-[var(--foreground)] mix-blend-difference ${isVisible3 ? 'is-visible' : ''}`}>
-              {displayText}
+            <h1 ref={ref3} className={`slide-up-animation text-[14.5vw] leading-[0.8] font-bold tracking-tighter text-[var(--foreground)] mix-blend-difference ${isVisible3 ? 'is-visible' : ''}`}>
+              FULL STACK
             </h1>
-            <h1 ref={ref4} className={`slide-up-animation text-[13.5vw] leading-[0.8] font-bold tracking-tighter text-[var(--brand-500)] flex items-center gap-4 ${isVisible4 ? 'is-visible' : ''}`}>
-              {/* Removed italics, enforced sans-serif */}
-              <span className="pr-4 font-sans not-italic">ENGINEER</span> 
+            <h1 ref={ref4} className={`slide-up-animation text-[14.5vw] leading-[0.8] font-bold tracking-tighter text-[var(--brand-500)] flex items-center gap-4 ${isVisible4 ? 'is-visible' : ''}`}>
+              ENGINEER
               <span className="hidden md:block h-[1vw] w-[1vw] bg-white rounded-full mt-4 animate-pulse"></span>
             </h1>
         </div>
